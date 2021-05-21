@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from django.views import generic
 from django.shortcuts import reverse
 from django.urls import reverse_lazy
-from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth.forms import UserCreationForm
+from . import forms
 
 
 def index(request):
@@ -19,7 +20,7 @@ class UserList(generic.ListView):
 class CreateUser(generic.CreateView):
     model = User
     # fields = ['first_name', 'last_name', 'username', 'password']
-    form_class = UserCreationForm
+    form_class = forms.CustomRegisterForm
     # context_object_name = "user_form"
     # success_url = reverse_lazy("cvbs:user_list")
     initial = {
