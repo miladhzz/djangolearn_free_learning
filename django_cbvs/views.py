@@ -6,6 +6,7 @@ from django.shortcuts import reverse
 from django.urls import reverse_lazy
 # from django.contrib.auth.forms import UserCreationForm
 from . import forms
+from . import models
 
 
 def index(request):
@@ -38,3 +39,25 @@ class CreateUser(generic.CreateView):
 
 class UserDetail(generic.DetailView):
     model = User
+
+
+class UpdateUser(generic.UpdateView):
+    model = User
+    fields = ['first_name', 'last_name']
+
+    def get_success_url(self):
+        return reverse("cvbs:user_detail", args=[self.object.id])
+
+
+class InfoList(generic.ListView):
+    model = models.Info
+
+
+class InfoDetail(generic.DetailView):
+    model = models.Info
+
+
+class UpdateInfo(generic.UpdateView):
+    model = models.Info
+    fields = ['title']
+

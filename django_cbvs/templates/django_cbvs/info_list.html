@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+
+    {% for info in info_list %}
+    <br />
+      Id:
+      <h4>{{ info.id }}</h4>
+      title:
+      <h5>{{ info.title }}</h5>
+      <br />
+      <a href="{% url 'cvbs:update_info' info.id %}">Update Info</a>
+      <a href="{{ info.get_absolute_url }}">Detail</a>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

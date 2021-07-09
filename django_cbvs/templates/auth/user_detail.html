@@ -3,8 +3,16 @@
 {% block body %}
 
 <div class="container">
-    {{ object.username }}
-    {{ user.username }}
+    username:
+    <h4>{{ object.username }} </h4>
+    <h4>{{ user.username }}</h4>
+    last name:
+    <h5>{{ user.last_name }}</h5>
+    Is Active:
+    <h5>{{ user.is_active }}</h5>
+    <br />
+    <a href="{% url 'cvbs:update_user' user.id %}">Update User</a>
+
 </div>
 
 {% endblock %}
