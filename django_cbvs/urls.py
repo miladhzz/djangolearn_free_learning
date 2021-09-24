@@ -14,4 +14,6 @@ urlpatterns = [
     path('info/detail/<int:pk>/', views.InfoDetail.as_view(), name="info_detail"),
     path('info/update/<int:pk>/', views.UpdateInfo.as_view(), name="update_info"),
     path('info/delete/<str:title>/', views.DeleteInfo.as_view(), name="delete_info"),
+
+    path('test-dispatch/', views.TestDispatch.as_view())
 ]

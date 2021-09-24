@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -9,6 +11,7 @@ from . import forms
 from . import models
 
 
+@login_required
 def index(request):
     return HttpResponse("<h1>Hello world!</h1>")
 
@@ -76,3 +79,9 @@ class DeleteInfo(generic.DeleteView):
         context = super(DeleteInfo, self).get_context_data(**kwargs)
         print(context)
         return context
+
+
+@method_decorator(login_required, name='dispatch')
+class TestDispatch(generic.View):
+    def get(self, *args, **kwargs):
+        return HttpResponse("<h1>Hello TestDispatch!</h1>")

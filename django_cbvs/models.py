@@ -11,3 +11,7 @@ class Info(models.Model):
 
     def __str__(self):
         return "{} - {}".format(self.id, self.title)
+
+
+class Child(models.Model):
+    title = models.ForeignKey(to=Info, null=True, on_delete=models.CASCADE)
