@@ -7,4 +7,7 @@ class Info(models.Model):
     title = models.CharField(max_length=20)
 
     def get_absolute_url(self):
-        return reverse('cvbs:info_detail', args=[self.id])
+        return reverse('cbvs:info_detail', args=[self.id])
+
+    def __str__(self):
+        return "{} - {}".format(self.id, self.title)

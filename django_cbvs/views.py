@@ -23,7 +23,7 @@ class CreateUser(generic.CreateView):
     # fields = ['first_name', 'last_name', 'username', 'password']
     form_class = forms.CustomRegisterForm
     # context_object_name = "user_form"
-    # success_url = reverse_lazy("cvbs:user_list")
+    # success_url = reverse_lazy("cbvs:user_list")
     initial = {
         'first_name': "milad"
     }
@@ -34,7 +34,7 @@ class CreateUser(generic.CreateView):
         return context
 
     def get_success_url(self):
-        return reverse("cvbs:user_detail", args=[self.object.id])
+        return reverse("cbvs:user_detail", args=[self.object.id])
 
 
 class UserDetail(generic.DetailView):
@@ -46,7 +46,7 @@ class UpdateUser(generic.UpdateView):
     fields = ['first_name', 'last_name']
 
     def get_success_url(self):
-        return reverse("cvbs:user_detail", args=[self.object.id])
+        return reverse("cbvs:user_detail", args=[self.object.id])
 
 
 class InfoList(generic.ListView):
@@ -61,3 +61,18 @@ class UpdateInfo(generic.UpdateView):
     model = models.Info
     fields = ['title']
 
+
+class DeleteInfo(generic.DeleteView):
+    model = models.Info
+    success_url = reverse_lazy('cbvs:index')
+    slug_url_kwarg = "title"
+    slug_field = "title"
+
+    def get_object(self, queryset=None):
+        title = self.kwargs.get('title')
+        return models.Info.objects.filter(title=title)[0]
+
+    def get_context_data(self, **kwargs):
+        context = super(DeleteInfo, self).get_context_data(**kwargs)
+        print(context)
+        return context

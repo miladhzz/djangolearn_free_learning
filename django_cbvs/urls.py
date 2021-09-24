@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = "cvbs"
+app_name = "cbvs"
 
 urlpatterns = [
     path('', views.index, name="index"),
@@ -13,4 +13,5 @@ urlpatterns = [
     path('info/', views.InfoList.as_view(), name="info_list"),
     path('info/detail/<int:pk>/', views.InfoDetail.as_view(), name="info_detail"),
     path('info/update/<int:pk>/', views.UpdateInfo.as_view(), name="update_info"),
+    path('info/delete/<str:title>/', views.DeleteInfo.as_view(), name="delete_info"),
 ]
